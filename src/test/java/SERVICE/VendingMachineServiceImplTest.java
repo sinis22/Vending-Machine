@@ -24,17 +24,17 @@ public class VendingMachineServiceImplTest {
         service = new VendingMachineServiceImpl(dao, auditDao);
     }
 
+    @BeforeAll
+    static void setUpClass() {}
+
+    @AfterAll
+    static void tearDownClass() {}
+
     @BeforeEach
     void setUp() {}
 
     @AfterEach
     void tearDown() {}
-
-    @BeforeAll
-    static void beforeAll() {}
-
-    @AfterAll
-    static void afterAll() {}
 
     @Test
     public void testInsufficientFunds() {

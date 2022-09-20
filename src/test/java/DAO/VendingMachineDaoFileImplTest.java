@@ -9,12 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class VendingMachineDaoFileImplTest {
 
     VendingMachineDao testDao;
-
     @BeforeAll
-    static void beforeAll() {}
+    static void setUpClass() {}
 
     @AfterAll
-    static void afterAll() {}
+    static void tearDownClass() {}
 
     @BeforeEach
     void setUp() throws Exception {
@@ -25,7 +24,7 @@ class VendingMachineDaoFileImplTest {
     @AfterEach
     void tearDown() {}
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getItem() throws Exception {
         Item item1 = testDao.getItem("Oreo");
         assertNotNull(item1, "Item must not be null");
@@ -39,7 +38,7 @@ class VendingMachineDaoFileImplTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void listAllItems() throws Exception {
         List<Item> testList = testDao.listAllItems();
 
@@ -54,7 +53,7 @@ class VendingMachineDaoFileImplTest {
         assertFalse(testList.contains(testDao.getItem("")), "List should not have empty string");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void changeInventoryCount() throws Exception {
         Item item1 = testDao.getItem("Popcorn");
         assertNotNull(item1, "Item must not be null");

@@ -1,4 +1,4 @@
-Swiss roll,3.00,23,
+Swiss roll,3.00,5,
 Oreo,0.50,300,
 Fanta,1.50,0,
 Coca Cola,2.30,7,
