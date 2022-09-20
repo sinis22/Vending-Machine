@@ -21,12 +21,14 @@ public class Change {
 
         BigDecimal Amount = funds.subtract(price);
 
+        // checking if there is enough money
         if(Amount.doubleValue() < 0)
         {
              throw new VendingMachineInsufficientFundsException("Not enough funds");
         }
-        BigDecimal[] remainder;
+        BigDecimal[] remainder; // finding the remainder
 
+        // calculating the change
         remainder = Amount.divideAndRemainder(Coins.QUARTERS.getValue(), mc);
         BigDecimal quarters = remainder[0];
         Change.put(Coins.QUARTERS, quarters.intValue());

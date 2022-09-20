@@ -32,7 +32,7 @@ public class VendingMachineController {
                     case 2:  // list all items
                         printAllItems();
                         break;
-                    case 3: // vend item
+                    case 3: // buy item
                         printAllItems();
                         try {
                             balance = buyItem(balance);
@@ -59,26 +59,31 @@ public class VendingMachineController {
         }
     }
 
+    // Printing the menu
     private int getMenuSelection() throws VendingMachinePersistenceException {
         view.printMenu();
         Balance(balance);
         return view.getChoice();
     }
+    //Printing the current balance
     private void Balance(BigDecimal balance)
     {
         view.showBalance(balance);
     }
 
+    // adding money and show balance after money has been added
     private BigDecimal addMoney(BigDecimal balance) {
         BigDecimal money = view.addMoney();
         return money.add(balance);
     }
 
+    // printing all the items available in the vending machine
     private void printAllItems() throws VendingMachinePersistenceException {
         List<Item> ListofItems = service.listAllItems();
         view.printAllItems(ListofItems);
     }
 
+    // choosing what item to buy
     private BigDecimal buyItem(BigDecimal balance) throws VendingMachinePersistenceException, 
             VendingMachineInsufficientFundsException, VendingMachineNoItemInventoryException {
         int choice;
@@ -92,9 +97,11 @@ public class VendingMachineController {
 
         return new BigDecimal(0 );
     }
+    // receive the choice on what item to buy
     private Item getChoice(int item) throws VendingMachinePersistenceException {
         return service.listAllItems().get(item);
     }
+    // Chck if there is enough stock of the product
     private boolean CheckValidity(int choice) throws VendingMachinePersistenceException {
         if(choice > service.listAllItems().size() || choice < 1) {
             view.invalidItem();
@@ -103,6 +110,7 @@ public class VendingMachineController {
         return true;
     }
 
+    // calculate the change
     private void Vend(Item item, BigDecimal balance) throws VendingMachineInsufficientFundsException, VendingMachinePersistenceException, VendingMachineNoItemInventoryException {
         BigDecimal newBalance = service.vendItem(balance, item);
         if(newBalance.doubleValue() >= 0)
@@ -112,6 +120,7 @@ public class VendingMachineController {
             view.Change(Change);
         }
     }
+    // quit message
     private void quit()
     {
         view.displayExitBanner();

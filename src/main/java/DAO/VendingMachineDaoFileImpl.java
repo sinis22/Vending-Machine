@@ -11,6 +11,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
     private final String ITEM_FILE;
     private static final String DELIMITER = ",";
 
+    //adding an item
     @Override
     public Item addItem(Item item) throws VendingMachinePersistenceException {
         Item addedItem = itemMap.put(item.getName(), item);
@@ -18,18 +19,21 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         return addedItem;
     }
 
+    // listing all the items
     @Override
     public List<Item> listAllItems() throws VendingMachinePersistenceException {
         readFile();
         return new ArrayList<>(itemMap.values());
     }
 
+    // getiing the item from stock
     @Override
     public Item getItem(String name) throws VendingMachinePersistenceException {
         readFile();
         return itemMap.get(name);
     }
 
+    // remove the item once taken
     @Override
     public Item removeItem(Item item) throws VendingMachinePersistenceException {
         readFile();
@@ -38,6 +42,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         return removedItem;
     }
 
+    //reduce product taken by 1
     @Override
     public void changeInventoryCount(Item item, int newCount) throws VendingMachinePersistenceException {
         item.setInventory(newCount);
@@ -45,6 +50,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         readFile();
     }
 
+    // inventory file
     public VendingMachineDaoFileImpl() throws VendingMachinePersistenceException {
         ITEM_FILE = System.getProperty("user.dir") + "/inventory.txt";
         itemMap = new HashMap<>();
@@ -75,6 +81,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         return itemAsText;
     }
 
+    // reading to file
     private void readFile() throws VendingMachinePersistenceException {
         try {
             Scanner scanner = new Scanner( new BufferedReader(new FileReader(ITEM_FILE)));
@@ -91,6 +98,7 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         }
     }
 
+    // writing to file
     private void writeFile() throws VendingMachinePersistenceException {
         PrintWriter out;
 

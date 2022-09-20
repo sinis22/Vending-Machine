@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 
 public class VendingMachineAudioDaoFileImpl implements VendingMachineAudioDao {
 
-    public static final String AUDIT_FILE = "audit.txt";
+    public static final String AUDIT_FILE = "audit.txt"; // text file to where all the audits go
 
     @Override
-    public void writeAuditEntry(String audit) throws VendingMachinePersistenceException {
+    public void writeAuditEntry(String audit) throws VendingMachinePersistenceException { // function to write to file
         PrintWriter out;
 
         try {
@@ -20,7 +20,7 @@ public class VendingMachineAudioDaoFileImpl implements VendingMachineAudioDao {
             throw new VendingMachinePersistenceException(
                     "Could not persist audit information.", e);
         }
-        LocalDateTime timestamp = LocalDateTime.now();
+        LocalDateTime timestamp = LocalDateTime.now(); // gets the date/time at the current point
         out.println(timestamp + " : " + audit);
         out.flush();
         out.close();

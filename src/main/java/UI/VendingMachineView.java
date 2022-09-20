@@ -17,6 +17,7 @@ public class VendingMachineView {
         this.io = io;
     }
 
+    //printing the menu
     public void  printMenu() {
         io.print("======Main Menu========");
         io.print("1. Add Money");
@@ -24,11 +25,13 @@ public class VendingMachineView {
         io.print("3. Buy Item");
         io.print("4. Quit");
     }
+    // get the number choice from the menu
     public int getChoice()
     {
         return Integer.parseInt(io.readString("Please select an operation."));
     }
 
+    // add money
     public BigDecimal addMoney()
     {
         io.print("====ADD FUNDS====");
@@ -38,6 +41,7 @@ public class VendingMachineView {
         return funds;
     }
 
+// printing all items in the vending machine
     public void printAllItems(List<Item> itemList)
     {
         io.print("=======Vending Machine Items==========");
@@ -48,6 +52,7 @@ public class VendingMachineView {
         io.print("=======================================");
         io.print(" ");
     }
+    // choosing the item number based of the list given
     public int itemChoiceMessage() {
         return io.readInt("Please select the item number.");
     }
@@ -55,6 +60,7 @@ public class VendingMachineView {
         io.print("Invalid item entered. Please enter an item shown in machine.");
     }
 
+    // show how much money is in the account
     public void showBalance(BigDecimal bal)
     {
         NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
@@ -68,6 +74,7 @@ public class VendingMachineView {
         io.readString("Please hit enter to continue.");
     }
 
+    // printing the change given after a transaction
     public void Change(Map<Coins, Integer> changeMap)
     {
         io.print("Change: " + changeMap.get(Coins.QUARTERS) + " quarters, " +
